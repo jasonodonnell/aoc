@@ -27,35 +27,35 @@ func read_file(filename string) []string {
 }
 
 func create_matrix(size int) [][]string {
-    matrix := [][]string{}
-    row1 := []string{"X","X","1","X","X"}
-    row2 := []string{"X","2","3","4","X"}
-    row3 := []string{"5","6","7","8","9"}
-    row4 := []string{"X","A","B","C","X"}
-    row5 := []string{"X","X","D","X","X"}
-    matrix = append(matrix, row1)
-    matrix = append(matrix, row2)
-    matrix = append(matrix, row3)
-    matrix = append(matrix, row4)
-    matrix = append(matrix, row5)
-    return matrix
+	matrix := [][]string{}
+	row1 := []string{"X", "X", "1", "X", "X"}
+	row2 := []string{"X", "2", "3", "4", "X"}
+	row3 := []string{"5", "6", "7", "8", "9"}
+	row4 := []string{"X", "A", "B", "C", "X"}
+	row5 := []string{"X", "X", "D", "X", "X"}
+	matrix = append(matrix, row1)
+	matrix = append(matrix, row2)
+	matrix = append(matrix, row3)
+	matrix = append(matrix, row4)
+	matrix = append(matrix, row5)
+	return matrix
 }
 
 func rules(direction string, size int, row int, col int, matrix [][]string) (int, int) {
 	if direction == "L" {
-		if (col - 1) > -1 && matrix[row][col - 1] != "X" {
+		if (col-1) > -1 && matrix[row][col-1] != "X" {
 			col = col - 1
 		}
 	} else if direction == "R" {
-		if (col + 1) < size && matrix[row][col + 1] != "X" {
+		if (col+1) < size && matrix[row][col+1] != "X" {
 			col = col + 1
 		}
 	} else if direction == "U" {
-		if (row - 1) > -1  && matrix[row - 1][col] != "X" {
+		if (row-1) > -1 && matrix[row-1][col] != "X" {
 			row = row - 1
 		}
 	} else {
-		if (row + 1) < size && matrix[row + 1][col] != "X"{
+		if (row+1) < size && matrix[row+1][col] != "X" {
 			row = row + 1
 		}
 	}
