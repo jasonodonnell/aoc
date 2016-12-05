@@ -28,6 +28,14 @@ func read_file(filename string) []string {
 	return lines 
 }
 
+func valid_triangle(a int, b int, c int) bool {
+    if ( a >= b + c ) || ( b >= a + c ) || ( c >= a + b ) {
+        return false
+    } else {
+        return true
+    }
+}
+
 func main() {
 	filenamePtr := flag.String("filename", "", "Input data filename")
 	flag.Parse()
@@ -45,10 +53,8 @@ func main() {
         a, _ := strconv.Atoi(result[0])
         b, _ := strconv.Atoi(result[1])
         c, _ := strconv.Atoi(result[2])
-
-        if ( a >= b + c ) || ( b >= a + c ) || ( c >= a + b ) {
-            continue
-        } else {
+        
+        if valid_triangle(a,b,c) {
             valid_triangles += 1
         }
 	}
