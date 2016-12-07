@@ -1,4 +1,4 @@
-# Advent of Code Day 1
+# Advent of Code Day 3 
 
 ### Part 1
 
