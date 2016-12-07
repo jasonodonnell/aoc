@@ -111,6 +111,7 @@ func main() {
 		if valid {
 			total_sum += sector_id
 		}
+        fmt.Println(string(room))
 
 	}
 	fmt.Println(total_sum)
