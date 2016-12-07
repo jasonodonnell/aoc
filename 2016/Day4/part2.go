@@ -101,6 +101,7 @@ func main() {
                 for k,v := range letters {
                     if v == increment {
 				        buffer.WriteString(string(k))
+                        break
                     }
                 }
 			}
