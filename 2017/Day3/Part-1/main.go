@@ -32,8 +32,6 @@ func main() {
 		}
 		for j := 0; j < 2; j++ {
 			for k := 0; k < board.Mag; k++ {
-				fmt.Printf("Pos: %d\tDir: %d\tMag: %d\tPoint: %v\n",
-					board.Position, board.Direction, board.Mag, *currentPosition)
 				currentPosition = board.Move(*currentPosition)
 				board.Position++
 			}
