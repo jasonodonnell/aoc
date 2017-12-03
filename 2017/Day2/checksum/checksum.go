@@ -10,7 +10,7 @@ type Checksum struct {
 }
 
 func (c *Checksum) Checksum() (int, error) {
-	i, j, err := c.Divides()
+	i, j, err := c.divides()
 	if err != nil {
 		return 0, err
 	}
@@ -18,10 +18,10 @@ func (c *Checksum) Checksum() (int, error) {
 }
 
 func (c *Checksum) Difference() int {
-	return c.Largest() - c.Smallest()
+	return c.largest() - c.smallest()
 }
 
-func (c *Checksum) Divides() (int, int, error) {
+func (c *Checksum) divides() (int, int, error) {
 	sort.Sort(sort.Reverse(sort.IntSlice(c.Nums)))
 	for i := 0; i < (len(c.Nums) - 2); i++ {
 		for j := i + 1; j < len(c.Nums); j++ {
@@ -33,7 +33,7 @@ func (c *Checksum) Divides() (int, int, error) {
 	return 0, 0, errors.New("no dividing pairs found")
 }
 
-func (c *Checksum) Largest() int {
+func (c *Checksum) largest() int {
 	largest := -1
 	for _, num := range c.Nums {
 		if num > largest {
@@ -43,7 +43,7 @@ func (c *Checksum) Largest() int {
 	return largest
 }
 
-func (c *Checksum) Smallest() int {
+func (c *Checksum) smallest() int {
 	smallest := 1000000000
 	for _, num := range c.Nums {
 		if num < smallest {
