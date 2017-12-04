@@ -6,10 +6,10 @@ import (
 
 type Spiral struct {
 	Board     map[int]Point
-	Sums      map[int]int
+	Sums      map[Point]int
 	Direction int
 	Position  int
-	Mag       int
+	Repeat    int
 }
 
 func (s *Spiral) Move(pos Point) *Point {
@@ -51,4 +51,26 @@ func (p *Point) Up() {
 
 func (p *Point) Down() {
 	p.Y = p.Y - 1
+}
+
+func (p *Point) SumAdjacent(s *Spiral) int {
+	sum := 0
+	directions := []Point{
+		Point{X: p.X, Y: (p.Y - 1)},
+		Point{X: p.X, Y: (p.Y + 1)},
+		Point{X: p.X + 1, Y: (p.Y)},
+		Point{X: p.X - 1, Y: (p.Y)},
+		Point{X: (p.X - 1), Y: (p.Y + 1)},
+		Point{X: (p.X + 1), Y: (p.Y + 1)},
+		Point{X: (p.X + 1), Y: (p.Y - 1)},
+		Point{X: (p.X - 1), Y: (p.Y - 1)},
+	}
+
+	for _, direction := range directions {
+		if val, ok := s.Sums[direction]; ok {
+			sum += val
+		}
+	}
+
+	return sum
 }
