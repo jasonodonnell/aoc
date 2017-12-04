@@ -45,14 +45,14 @@ type Point struct {
 func (p *Point) SumAdjacent(s *Spiral) int {
 	sum := 0
 	directions := []Point{
-		Point{X: p.X, Y: (p.Y - 1)},       // North
-		Point{X: p.X, Y: (p.Y + 1)},       // South
+		Point{X: p.X, Y: (p.Y + 1)},       // North
+		Point{X: p.X, Y: (p.Y - 1)},       // South
 		Point{X: (p.X + 1), Y: (p.Y)},     // East
 		Point{X: (p.X - 1), Y: (p.Y)},     // West
 		Point{X: (p.X - 1), Y: (p.Y + 1)}, // North West
 		Point{X: (p.X + 1), Y: (p.Y + 1)}, // North East
-		Point{X: (p.X + 1), Y: (p.Y - 1)}, // South West
-		Point{X: (p.X - 1), Y: (p.Y - 1)}, // South East
+		Point{X: (p.X - 1), Y: (p.Y - 1)}, // South West
+		Point{X: (p.X + 1), Y: (p.Y - 1)}, // South East
 	}
 
 	for _, direction := range directions {
