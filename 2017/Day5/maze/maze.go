@@ -23,6 +23,6 @@ func (m *Maze) Move(advanced bool) {
 		m.Instructions[m.position]++
 	}
 
-	m.position = m.position + m.offset
+	m.position += m.offset
 	m.Steps++
 }
