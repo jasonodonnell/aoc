@@ -7,11 +7,10 @@ type Maze struct {
 }
 
 func (m *Maze) Move(offset int, advanced bool) {
-	m.Instructions[m.Position]++
-	if advanced {
-		if offset >= 3 {
-			m.Instructions[m.Position] = m.Instructions[m.Position] - 2
-		}
+	if advanced && offset >= 3 {
+		m.Instructions[m.Position]--
+	} else {
+		m.Instructions[m.Position]++
 	}
 	m.Position = m.Position + offset
 	m.Steps++
