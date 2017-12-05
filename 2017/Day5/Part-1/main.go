@@ -40,7 +40,6 @@ func main() {
 			break
 		}
 		maze.Move(maze.Instructions[maze.Position], false)
-		//time.Sleep(time.Millisecond * 50)
 	}
 	fmt.Println(maze.Steps)
 }
