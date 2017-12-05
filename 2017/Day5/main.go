@@ -38,9 +38,10 @@ func init() {
 
 func main() {
 	for {
-		if maze.Move(*advancedRules) {
+		if maze.Escaped() {
+			fmt.Println(maze.Steps)
 			break
 		}
+		maze.Move(*advancedRules)
 	}
-	fmt.Println(maze.Steps)
 }

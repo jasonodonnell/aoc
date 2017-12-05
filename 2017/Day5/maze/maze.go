@@ -7,12 +7,16 @@ type Maze struct {
 	Steps        int
 }
 
-func (m *Maze) Move(advanced bool) (escaped bool) {
+func (m *Maze) Escaped() (escaped bool) {
 	if m.position >= len(m.Instructions) {
 		return true
 	}
+	return
+}
 
+func (m *Maze) Move(advanced bool) {
 	m.offset = m.Instructions[m.position]
+
 	if advanced && m.offset >= 3 {
 		m.Instructions[m.position]--
 	} else {
@@ -21,5 +25,4 @@ func (m *Maze) Move(advanced bool) (escaped bool) {
 
 	m.position = m.position + m.offset
 	m.Steps++
-	return false
 }
