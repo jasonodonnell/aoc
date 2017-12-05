@@ -31,15 +31,14 @@ func init() {
 		}
 		maze.Instructions = append(maze.Instructions, num)
 	}
-	maze.Position = 0
 }
 
 func main() {
+	advancedRules := true
 	for {
-		if maze.Position >= len(maze.Instructions) {
+		if maze.Move(advancedRules) {
 			break
 		}
-		maze.Move(maze.Instructions[maze.Position], true)
 	}
 	fmt.Println(maze.Steps)
 }
