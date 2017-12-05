@@ -12,11 +12,12 @@ import (
 )
 
 var maze m.Maze
-
-const advancedRules = true
+var advancedRules *bool
 
 func init() {
-	filePath := flag.String("file", "../input.txt", "Path to input file")
+	filePath := flag.String("file", "./input.txt", "Path to input file")
+	advancedRules = flag.Bool("advanced", false, "Advanced rules boolean")
+
 	flag.Parse()
 
 	f, err := os.Open(*filePath)
@@ -37,7 +38,7 @@ func init() {
 
 func main() {
 	for {
-		if maze.Move(advancedRules) {
+		if maze.Move(*advancedRules) {
 			break
 		}
 	}
