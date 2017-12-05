@@ -13,6 +13,8 @@ import (
 
 var maze m.Maze
 
+const advancedRules = true
+
 func init() {
 	filePath := flag.String("file", "../input.txt", "Path to input file")
 	flag.Parse()
@@ -34,7 +36,6 @@ func init() {
 }
 
 func main() {
-	advancedRules := true
 	for {
 		if maze.Move(advancedRules) {
 			break
