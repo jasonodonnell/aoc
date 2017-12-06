@@ -49,7 +49,7 @@ func main() {
 		if memory.Stringify(memory.Banks) == repeated {
 			break
 		}
-		if memory.PatternExists() {
+		if memory.BlockExists() {
 			if repeated == "" {
 				repeated = memory.Stringify(memory.Banks)
 				memory.RedistributionCount = 0

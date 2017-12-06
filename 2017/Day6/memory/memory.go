@@ -12,7 +12,7 @@ type Memory struct {
 	index               int
 }
 
-func (m *Memory) PatternExists() bool {
+func (m *Memory) BlockExists() bool {
 	for _, v := range m.Blocks {
 		if v > 1 {
 			return true

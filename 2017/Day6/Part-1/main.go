@@ -44,7 +44,7 @@ func init() {
 }
 
 func main() {
-	for !memory.PatternExists() {
+	for !memory.BlockExists() {
 		memory.BlockRedistribution()
 	}
 	fmt.Println(memory.RedistributionCount)
