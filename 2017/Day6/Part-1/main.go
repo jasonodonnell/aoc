@@ -27,10 +27,6 @@ func init() {
 	scanner := bufio.NewScanner(f)
 	scanner.Split(bufio.ScanLines)
 
-	memory = m.Memory{
-		Blocks: make(map[string]int),
-	}
-
 	for scanner.Scan() {
 		nums := strings.Fields(scanner.Text())
 		for _, v := range nums {
@@ -41,6 +37,7 @@ func init() {
 			memory.Banks = append(memory.Banks, num)
 		}
 	}
+	memory.Blocks = make(map[string]int)
 }
 
 func main() {
