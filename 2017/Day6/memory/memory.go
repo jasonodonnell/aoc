@@ -12,7 +12,7 @@ type Memory struct {
 	index               int
 }
 
-func (m *Memory) BlockExists() bool {
+func (m *Memory) BankExists() bool {
 	for _, v := range m.Blocks {
 		if v > 1 {
 			return true

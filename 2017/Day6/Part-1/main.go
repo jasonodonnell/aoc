@@ -44,7 +44,7 @@ func init() {
 }
 
 func main() {
-	for !memory.BlockExists() {
+	for !memory.BankExists() {
 		memory.BlockRedistribution()
 	}
 	fmt.Println(memory.RedistributionCount)
