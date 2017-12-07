@@ -47,7 +47,7 @@ func (t *Tower) totalWeight(root string) float64 {
 	return t.Programs[root].TotalWeight
 }
 
-// FindBalanced is a desperate attempt at solving this problem and
+// FindUnbalanced is a desperate attempt at solving this problem and
 // should not reflect too harshly on the author.
 func (t *Tower) FindUnbalanced(root string) float64 {
 	_ = t.totalWeight(root)
