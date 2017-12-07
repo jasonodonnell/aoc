@@ -60,7 +60,7 @@ Loop:
 			continue
 		}
 		// Not leaf, for each child entry, hash weights
-		// If has has more then one entry, its unbalanced
+		// If hash has more then one entry, its unbalanced
 		for _, child := range program.Children {
 			programs[t.Programs[child].TotalWeight]++
 			// The culprit will have balanced child entries,
