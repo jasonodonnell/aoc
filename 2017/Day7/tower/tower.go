@@ -52,14 +52,19 @@ func (t *Tower) FindUnbalanced(root string) float64 {
 	_ = t.totalWeight(root)
 	var unbalanced string
 Loop:
-	for name, program := range t.Programs {
+	for _, program := range t.Programs {
 		programs := make(map[float64]int)
-		if program.Supports == nil {
+		// Leaf node
+		if program.Supports == nil || program.Name == root {
 			continue
 		}
+		// Not leaf, for each support entry, hash weights
+		// If has has more then one entry, its unbalanced
+		// The culprit will have balanced support entries,
+		// so we need to find that next and return.
 		for _, v := range program.Supports {
 			programs[t.Programs[v].TotalWeight]++
-			if len(programs) > 1 && name != root {
+			if len(programs) > 1 {
 				balanced := make(map[float64]int)
 				for _, x := range t.Programs[v].Supports {
 					balanced[t.Programs[x].TotalWeight]++
