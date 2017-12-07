@@ -18,19 +18,19 @@ type Tower struct {
 
 func (t *Tower) FindBase() string {
 Loop:
-	for _, v := range t.Bases {
-		for _, x := range t.Programs {
+	for _, parent := range t.Bases {
+		for _, program := range t.Programs {
 			// Ignore self or leaf nodes
-			if x.Name == v || x.Children == nil {
+			if program.Name == parent || program.Children == nil {
 				continue
 			}
-			for _, each := range x.Children {
-				if v == each {
+			for _, each := range program.Children {
+				if parent == each {
 					continue Loop
 				}
 			}
 		}
-		return v
+		return parent
 	}
 	return ""
 }
@@ -47,6 +47,8 @@ func (t *Tower) totalWeight(root string) float64 {
 	return t.Programs[root].TotalWeight
 }
 
+// FindBalanced is a desperate attempt at solving this problem and
+// should not reflect too harshly on the author.
 func (t *Tower) FindUnbalanced(root string) float64 {
 	_ = t.totalWeight(root)
 	var unbalanced string
@@ -59,10 +61,10 @@ Loop:
 		}
 		// Not leaf, for each child entry, hash weights
 		// If has has more then one entry, its unbalanced
-		// The culprit will have balanced child entries,
-		// so we need to find that next and return.
 		for _, child := range program.Children {
 			programs[t.Programs[child].TotalWeight]++
+			// The culprit will have balanced child entries,
+			// so we need to find that next and return.
 			if len(programs) > 1 {
 				balanced := make(map[float64]int)
 				for _, v := range t.Programs[child].Children {
@@ -76,19 +78,18 @@ Loop:
 			}
 		}
 	}
-
 	parent := t.getParent(unbalanced)
 	return t.weightAdjustment(unbalanced, parent)
 }
 
 func (t *Tower) getParent(node string) string {
-	for _, v := range t.Programs {
-		if v.Children == nil {
+	for _, program := range t.Programs {
+		if program.Children == nil {
 			continue
 		}
-		for _, program := range v.Children {
-			if program == node {
-				return v.Name
+		for _, v := range program.Children {
+			if v == node {
+				return program.Name
 			}
 		}
 	}
