@@ -58,16 +58,10 @@ Loop:
 			continue
 		}
 		for _, v := range program.Supports {
-			if _, ok := programs[t.Programs[v].TotalWeight]; !ok {
-				programs[t.Programs[v].TotalWeight] = 0
-			}
 			programs[t.Programs[v].TotalWeight]++
 			if len(programs) > 1 && name != root {
 				balanced := make(map[float64]int)
 				for _, x := range t.Programs[v].Supports {
-					if _, ok := balanced[t.Programs[x].TotalWeight]; !ok {
-						balanced[t.Programs[x].TotalWeight] = 0
-					}
 					balanced[t.Programs[x].TotalWeight]++
 				}
 				if len(balanced) == 1 {
