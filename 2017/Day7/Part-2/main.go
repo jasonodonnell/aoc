@@ -50,7 +50,7 @@ func init() {
 }
 
 func main() {
-	fmt.Println(tower.FindBase())
+	fmt.Println(tower.FindUnbalanced(tower.FindBase()))
 }
 
 func formatLine(s string) string {
