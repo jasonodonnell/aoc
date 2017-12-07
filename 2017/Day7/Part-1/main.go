@@ -41,7 +41,7 @@ func init() {
 
 		if len(fields) >= 3 {
 			for _, v := range fields[2:len(fields)] {
-				program.Supports = append(program.Supports, v)
+				program.Children = append(program.Children, v)
 			}
 			tower.Bases = append(tower.Bases, program.Name)
 		}
