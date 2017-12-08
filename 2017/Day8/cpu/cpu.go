@@ -78,14 +78,6 @@ func (i *Instruction) modifyRegister() {
 	}
 }
 
-func toInt(s string) int {
-	i, err := strconv.Atoi(s)
-	if err != nil {
-		return 0
-	}
-	return i
-}
-
 // LargestRegister returns the largest current register.
 func LargestRegister() (string, int) {
 	largest := -1
@@ -126,4 +118,12 @@ func (i *Instruction) equal() {
 
 func (i *Instruction) notEqual() {
 	i.modify = r.registers[i.CompareA] != i.CompareB
+}
+
+func toInt(s string) int {
+	i, err := strconv.Atoi(s)
+	if err != nil {
+		return 0
+	}
+	return i
 }
