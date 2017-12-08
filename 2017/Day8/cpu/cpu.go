@@ -26,7 +26,7 @@ type Instruction struct {
 	modify           bool
 }
 
-func NewInstruction(instruction []string) (*Instruction, error) {
+func NewInstruction(instruction []string) *Instruction {
 	return &Instruction{
 		Register:         instruction[0],
 		ModifyOperation:  instruction[1],
@@ -34,7 +34,7 @@ func NewInstruction(instruction []string) (*Instruction, error) {
 		CompareA:         instruction[4],
 		CompareOperation: instruction[5],
 		CompareB:         toInt(instruction[6]),
-	}, nil
+	}
 }
 
 func (i *Instruction) ProcessInstruction() {

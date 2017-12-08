@@ -28,10 +28,7 @@ func init() {
 
 	for scanner.Scan() {
 		field := strings.Fields(scanner.Text())
-		instruction, err := cpu.NewInstruction(field)
-		if err != nil {
-			log.Fatalf("Error parsing instruction: %s", err)
-		}
+		instruction := cpu.NewInstruction(field)
 		instructions = append(instructions, instruction)
 	}
 }
