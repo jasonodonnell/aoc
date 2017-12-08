@@ -35,7 +35,10 @@ func init() {
 
 func main() {
 	for _, v := range instructions {
-		v.ProcessInstruction()
+		err := v.ProcessInstruction()
+		if err != nil {
+			log.Fatalf("Unknown operation: %s", err)
+		}
 	}
 	fmt.Println(cpu.LargestRegister())
 	fmt.Println(cpu.Highmark())

@@ -1,21 +1,23 @@
 package cpu
 
 import (
+	"fmt"
 	"strconv"
 )
+
+var r registers
 
 type registers struct {
 	registers map[string]int
 	largest   int
 }
 
-var r registers
-
 func init() {
 	r.registers = make(map[string]int)
 	r.largest = -1
 }
 
+// Instruction represents a cpu instruction
 type Instruction struct {
 	Register         string
 	ModifyOperation  string
@@ -26,6 +28,8 @@ type Instruction struct {
 	modify           bool
 }
 
+// NewInstruction is a factory function for returning a
+// new instruction object.
 func NewInstruction(instruction []string) *Instruction {
 	return &Instruction{
 		Register:         instruction[0],
@@ -37,7 +41,8 @@ func NewInstruction(instruction []string) *Instruction {
 	}
 }
 
-func (i *Instruction) ProcessInstruction() {
+// ProcessInstruction proesses a instruction.
+func (i *Instruction) ProcessInstruction() error {
 	switch i.CompareOperation {
 	case "<":
 		i.lessThan()
@@ -51,16 +56,25 @@ func (i *Instruction) ProcessInstruction() {
 		i.equal()
 	case "!=":
 		i.notEqual()
+	default:
+		return fmt.Errorf("Operation unknown: %s", i.CompareOperation)
 	}
+
 	if i.modify {
-		if i.ModifyOperation == "inc" {
-			r.registers[i.Register] += i.ModifyValue
-		} else {
-			r.registers[i.Register] -= i.ModifyValue
-		}
+		i.modifyRegister()
 	}
+
 	if r.registers[i.Register] > r.largest {
 		r.largest = r.registers[i.Register]
+	}
+	return nil
+}
+
+func (i *Instruction) modifyRegister() {
+	if i.ModifyOperation == "inc" {
+		r.registers[i.Register] += i.ModifyValue
+	} else {
+		r.registers[i.Register] -= i.ModifyValue
 	}
 }
 
@@ -72,6 +86,7 @@ func toInt(s string) int {
 	return i
 }
 
+// LargestRegister returns the largest current register.
 func LargestRegister() (string, int) {
 	largest := -1
 	var register string
@@ -84,6 +99,7 @@ func LargestRegister() (string, int) {
 	return register, largest
 }
 
+// Highmark returns the largest value seen in any register.
 func Highmark() int {
 	return r.largest
 }
