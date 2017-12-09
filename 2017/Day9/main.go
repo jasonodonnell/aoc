@@ -13,7 +13,7 @@ import (
 var stream string
 
 func init() {
-	filePath := flag.String("file", "../input.txt", "Path to input file")
+	filePath := flag.String("file", "./input.txt", "Path to input file")
 	flag.Parse()
 
 	f, err := os.Open(*filePath)
