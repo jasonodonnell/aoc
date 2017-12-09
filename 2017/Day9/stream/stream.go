@@ -4,12 +4,12 @@ type Stream struct {
 	ignoreNext   bool
 	inGarbage    bool
 	inGroup      bool
-	groupCounts  []int
+	groupCounts  int
 	groupNest    int
 	garbageCount int
 }
 
-func (s *Stream) ProcessStream(stream string) ([]int, int) {
+func (s *Stream) ProcessStream(stream string) (int, int) {
 	for _, v := range stream {
 		if s.ignoreNext {
 			s.ignoreNext = false
@@ -63,7 +63,7 @@ func (s *Stream) closeBrace() {
 	if s.inGarbage {
 		s.garbageCount++
 	} else {
-		s.groupCounts = append(s.groupCounts, s.groupNest)
+		s.groupCounts += s.groupNest
 		s.groupNest--
 		if s.groupNest == 0 {
 			s.inGroup = false

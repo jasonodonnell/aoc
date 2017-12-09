@@ -33,9 +33,5 @@ func init() {
 func main() {
 	s := s.Stream{}
 	counts, garbage := s.ProcessStream(stream)
-	sum := 0
-	for _, v := range counts {
-		sum += v
-	}
-	fmt.Println(sum, garbage)
+	fmt.Println(counts, garbage)
 }
