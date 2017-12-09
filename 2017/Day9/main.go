@@ -32,6 +32,6 @@ func init() {
 
 func main() {
 	s := s.Stream{}
-	counts, garbage := s.ProcessStream(stream)
-	fmt.Println(counts, garbage)
+	s.ProcessStream(stream)
+	fmt.Println(s.GroupCount, s.GarbageCount)
 }
