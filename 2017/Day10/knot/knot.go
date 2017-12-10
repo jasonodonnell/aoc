@@ -1,8 +1,6 @@
 package knot
 
-import (
-	"strconv"
-)
+import "strconv"
 
 type Knot struct {
 	List       []int
@@ -47,17 +45,15 @@ func (k *Knot) Reverse(length int) {
 }
 
 func (k *Knot) Hash() string {
-	i := 0
 	var hash string
-	for i < len(k.List) {
-		// Not sure how to do this on a slice.. hacky for now.
-		// Doing them two at a time didn't seem to work
-		denseHash := int64(k.List[i] ^ k.List[i+1] ^ k.List[i+2] ^ k.List[i+3] ^
-			k.List[i+4] ^ k.List[i+5] ^ k.List[i+6] ^ k.List[i+7] ^
-			k.List[i+8] ^ k.List[i+9] ^ k.List[i+10] ^ k.List[i+11] ^
-			k.List[i+12] ^ k.List[i+13] ^ k.List[i+14] ^ k.List[i+15])
-		hash += strconv.FormatInt(denseHash, 16)
-		i += 16
+	dense := make([]int, len(k.List)/16)
+	for i := 0; i < len(k.List); i += 16 {
+		for j := 0; j < 16; j++ {
+			dense[i/16] ^= k.List[i+j]
+		}
+	}
+	for _, v := range dense {
+		hash += strconv.FormatInt(int64(v), 16)
 	}
 	return hash
 }
