@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/jasonodonnell/AdventOfCode/2017/Day10/hash"
+	"github.com/jasonodonnell/AdventOfCode/2017/Day10/knot"
 )
 
 var lengths []int
@@ -40,10 +40,9 @@ func init() {
 }
 
 func main() {
-	h := hash.NewHash(256)
+	k := knot.NewKnot(256)
 	for _, v := range lengths {
-		h.Length = v
-		h.Reverse()
+		k.Reverse(v)
 	}
-	fmt.Println(h.List[0] * h.List[1])
+	fmt.Println(k.List[0] * k.List[1])
 }

@@ -3,10 +3,11 @@ package main
 import (
 	"bufio"
 	"flag"
+	"fmt"
 	"log"
 	"os"
 
-	"github.com/jasonodonnell/AdventOfCode/2017/Day10/hash"
+	"github.com/jasonodonnell/AdventOfCode/2017/Day10/knot"
 )
 
 var lengths []byte
@@ -32,12 +33,11 @@ func init() {
 }
 
 func main() {
-	h := hash.NewHash(256)
+	k := knot.NewKnot(256)
 	for i := 0; i < 64; i++ {
 		for _, v := range lengths {
-			h.Length = int(v)
-			h.Reverse()
+			k.Reverse(int(v))
 		}
 	}
-	h.XOR()
+	fmt.Println(k.Hash())
 }
