@@ -1,5 +1,10 @@
 package hash
 
+import (
+	"fmt"
+	"strconv"
+)
+
 type Hash struct {
 	List       []int
 	currentPos int
@@ -40,4 +45,20 @@ func (h *Hash) Reverse() {
 	}
 	h.currentPos = (h.currentPos + h.Length + h.skipSize) % len(h.List)
 	h.skipSize++
+}
+
+func (h *Hash) XOR() {
+	i := 0
+	for i < len(h.List) {
+		// Not sure how to do this on a slice.. hacky for now.
+		denseHash := int64(h.List[i] ^ h.List[i+1] ^
+			h.List[i+2] ^ h.List[i+3] ^ h.List[i+4] ^
+			h.List[i+5] ^ h.List[i+6] ^ h.List[i+7] ^
+			h.List[i+8] ^ h.List[i+9] ^ h.List[i+10] ^
+			h.List[i+11] ^ h.List[i+12] ^ h.List[i+13] ^
+			h.List[i+14] ^ h.List[i+15])
+		fmt.Printf(strconv.FormatInt(denseHash, 16))
+		i += 16
+	}
+	fmt.Println("")
 }
