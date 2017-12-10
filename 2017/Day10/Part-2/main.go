@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
 
 	"github.com/jasonodonnell/AdventOfCode/2017/Day10/knot"
 )
@@ -39,5 +40,10 @@ func main() {
 			k.Reverse(int(v))
 		}
 	}
-	fmt.Println(k.Hash())
+
+	dense := k.Hash()
+	for _, v := range dense {
+		fmt.Printf(strconv.FormatInt(int64(v), 16))
+	}
+	fmt.Println("")
 }

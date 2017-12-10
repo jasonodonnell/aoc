@@ -1,7 +1,5 @@
 package knot
 
-import "strconv"
-
 type Knot struct {
 	List       []int
 	currentPos int
@@ -44,16 +42,12 @@ func (k *Knot) Reverse(length int) {
 	k.skipSize++
 }
 
-func (k *Knot) Hash() string {
-	var hash string
-	dense := make([]int, len(k.List)/16)
+func (k *Knot) Hash() []int {
+	dense := make([]int, 16)
 	for i := 0; i < len(k.List); i += 16 {
 		for j := 0; j < 16; j++ {
 			dense[i/16] ^= k.List[i+j]
 		}
 	}
-	for _, v := range dense {
-		hash += strconv.FormatInt(int64(v), 16)
-	}
-	return hash
+	return dense
 }
