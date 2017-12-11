@@ -17,19 +17,19 @@ type Point struct {
 func (h *Hex) Move(direction string) {
 	switch direction {
 	case "n":
-		h.Position.Y = h.Position.Y + 1
+		h.Position.Y++
 	case "ne":
-		h.Position.X = h.Position.X + 1
+		h.Position.X++
 	case "nw":
-		h.Position.X = h.Position.X - 1
-		h.Position.Y = h.Position.Y + 1
+		h.Position.X--
+		h.Position.Y++
 	case "s":
-		h.Position.Y = h.Position.Y - 1
+		h.Position.Y--
 	case "se":
-		h.Position.X = h.Position.X + 1
-		h.Position.Y = h.Position.Y - 1
+		h.Position.X++
+		h.Position.Y--
 	case "sw":
-		h.Position.X = h.Position.X - 1
+		h.Position.X--
 	}
 	h.Distance = h.distance()
 	h.highmark()
