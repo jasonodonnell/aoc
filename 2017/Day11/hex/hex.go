@@ -37,7 +37,7 @@ func (h *Hex) Move(direction string) {
 
 func (h *Hex) distance() float64 {
 	z := computeZ(h.Position)
-	max := math.Max(h.Position.X, h.Position.Y)
+	max := math.Max(math.Abs(h.Position.X), math.Abs(h.Position.Y))
 	return math.Max(max, z)
 }
 
