@@ -4,7 +4,7 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/jasonodonnell/AdventOfCode/2017/Day3/spiral"
+	"github.com/jasonodonnell/AdventOfCode/2017/Day03/spiral"
 )
 
 var board *spiral.Spiral

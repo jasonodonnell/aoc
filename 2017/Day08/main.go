@@ -8,7 +8,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/jasonodonnell/AdventOfCode/2017/Day8/cpu"
+	"github.com/jasonodonnell/AdventOfCode/2017/Day08/cpu"
 )
 
 var instructions []*cpu.Instruction

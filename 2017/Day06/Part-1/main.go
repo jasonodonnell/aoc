@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"strings"
 
-	m "github.com/jasonodonnell/AdventOfCode/2017/Day6/memory"
+	m "github.com/jasonodonnell/AdventOfCode/2017/Day06/memory"
 )
 
 var memory m.Memory

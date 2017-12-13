@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/jasonodonnell/AdventOfCode/2017/Day2/checksum"
+	"github.com/jasonodonnell/AdventOfCode/2017/Day02/checksum"
 )
 
 var checksums []*checksum.Checksum

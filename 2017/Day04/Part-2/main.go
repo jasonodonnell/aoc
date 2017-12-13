@@ -8,7 +8,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/jasonodonnell/AdventOfCode/2017/Day4/runesort"
+	"github.com/jasonodonnell/AdventOfCode/2017/Day04/runesort"
 )
 
 var passphrases [][]string

@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"strings"
 
-	t "github.com/jasonodonnell/AdventOfCode/2017/Day7/tower"
+	t "github.com/jasonodonnell/AdventOfCode/2017/Day07/tower"
 )
 
 var tower t.Tower
@@ -50,7 +50,7 @@ func init() {
 }
 
 func main() {
-	fmt.Println(tower.FindBase())
+	fmt.Println(tower.FindUnbalanced(tower.FindBase()))
 }
 
 func formatLine(s string) string {

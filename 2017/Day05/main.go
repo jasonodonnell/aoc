@@ -8,7 +8,7 @@ import (
 	"os"
 	"strconv"
 
-	m "github.com/jasonodonnell/AdventOfCode/2017/Day5/maze"
+	m "github.com/jasonodonnell/AdventOfCode/2017/Day05/maze"
 )
 
 var maze m.Maze

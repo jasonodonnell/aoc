@@ -7,7 +7,7 @@ import (
 	"log"
 	"os"
 
-	s "github.com/jasonodonnell/AdventOfCode/2017/Day9/stream"
+	s "github.com/jasonodonnell/AdventOfCode/2017/Day09/stream"
 )
 
 var stream string
