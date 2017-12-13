@@ -1,8 +1,8 @@
 package program
 
 type Programs struct {
-	Pipes    map[string][]string
 	Contains int
+	Pipes    map[string][]string
 	Visited  map[string]bool
 }
 
