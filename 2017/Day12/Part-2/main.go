@@ -36,13 +36,14 @@ func init() {
 }
 
 func main() {
+	groups := 0
 	for k := range programs.Pipes {
 		if _, ok := programs.Visited[k]; !ok {
 			programs.WalkGroup(k)
-			programs.Groups++
+			groups++
 		}
 	}
-	fmt.Println(programs.Groups)
+	fmt.Println(groups)
 }
 
 func formatLine(s string) string {
