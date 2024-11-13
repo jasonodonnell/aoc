@@ -32,24 +32,24 @@ fn main() {
     let file = File::open(&path).expect("could not open file");
     let reader = io::BufReader::new(file);
 
-    let numbers: Vec<i32> = reader
+    let mut numbers: Vec<i32> = reader
         .lines()
         .filter_map(|line| line.ok())
         .filter_map(|line| line.parse::<i32>().ok())
         .collect();
 
-    println!("{}", part_one(numbers.clone(), 2020).unwrap());
-    println!("{}", part_two(numbers, 2020).unwrap());
+    println!("{}", part_one(&mut numbers, 2020).unwrap());
+    println!("{}", part_two(&mut numbers, 2020).unwrap());
 }
 
-fn part_one(mut numbers: Vec<i32>, target: i32) -> Option<i32> {
+fn part_one(numbers: &mut [i32], target: i32) -> Option<i32> {
     numbers.sort_unstable();
     find_target_sum(&numbers, target)
         .map(|(a, b)| a.checked_mul(b))
         .flatten()
 }
 
-fn part_two(mut numbers: Vec<i32>, target: i32) -> Option<i32> {
+fn part_two(numbers: &mut [i32], target: i32) -> Option<i32> {
     numbers.sort_unstable();
     for (i, num) in numbers.iter().enumerate() {
         let diff: i32 = target - num;
@@ -83,13 +83,13 @@ mod tests {
 
     #[test]
     fn part_one_example() {
-        let input = vec![1721, 979, 366, 299, 675, 1456];
-        assert_eq!(514579, part_one(input, 2020).unwrap());
+        let mut input = vec![1721, 979, 366, 299, 675, 1456];
+        assert_eq!(514579, part_one(&mut input, 2020).unwrap());
     }
 
     #[test]
     fn part_two_example() {
-        let input = vec![1721, 979, 366, 299, 675, 1456];
-        assert_eq!(241861950, part_two(input, 2020).unwrap());
+        let mut input = vec![1721, 979, 366, 299, 675, 1456];
+        assert_eq!(241861950, part_two(&mut input, 2020).unwrap());
     }
 }
