@@ -38,22 +38,22 @@ fn main() {
         .filter_map(|line| line.parse::<i32>().ok())
         .collect();
 
-    println!("{}", part_one(numbers.clone()).unwrap());
-    println!("{}", part_two(numbers).unwrap());
+    println!("{}", part_one(numbers.clone(), 2020).unwrap());
+    println!("{}", part_two(numbers, 2020).unwrap());
 }
 
-fn part_one(mut numbers: Vec<i32>) -> Option<i32> {
+fn part_one(mut numbers: Vec<i32>, target: i32) -> Option<i32> {
     numbers.sort_unstable();
-    find_target_sum(&numbers, 2020)
+    find_target_sum(&numbers, target)
         .map(|(a, b)| a.checked_mul(b))
         .flatten()
 }
 
-fn part_two(mut numbers: Vec<i32>) -> Option<i32> {
+fn part_two(mut numbers: Vec<i32>, target: i32) -> Option<i32> {
     numbers.sort_unstable();
     for (i, num) in numbers.iter().enumerate() {
-        let target: i32 = 2020 - num;
-        if let Some((a, b)) = find_target_sum(&numbers[i + 1..], target) {
+        let diff: i32 = target - num;
+        if let Some((a, b)) = find_target_sum(&numbers[i + 1..], diff) {
             return Some(a * b * num);
         } else {
             continue;
@@ -84,12 +84,12 @@ mod tests {
     #[test]
     fn part_one_example() {
         let input = vec![1721, 979, 366, 299, 675, 1456];
-        assert_eq!(514579, part_one(input).unwrap());
+        assert_eq!(514579, part_one(input, 2020).unwrap());
     }
 
     #[test]
     fn part_two_example() {
         let input = vec![1721, 979, 366, 299, 675, 1456];
-        assert_eq!(241861950, part_two(input).unwrap());
+        assert_eq!(241861950, part_two(input, 2020).unwrap());
     }
 }
