@@ -114,23 +114,17 @@ fn main() {
 }
 
 fn part_one(passwords: &Vec<(PasswordPolicy, String)>) -> i32 {
-    let mut count = 0;
-    for (policy, password) in passwords {
-        if policy.valid_contains(password.to_string()) {
-            count += 1;
-        }
-    }
-    count
+    passwords
+        .iter()
+        .filter(|(policy, password)| policy.valid_contains(password.to_string()))
+        .count() as i32
 }
 
 fn part_two(passwords: &Vec<(PasswordPolicy, String)>) -> i32 {
-    let mut count = 0;
-    for (policy, password) in passwords {
-        if policy.valid_pos(password.to_string()) {
-            count += 1;
-        }
-    }
-    count
+    passwords
+        .iter()
+        .filter(|(policy, password)| policy.valid_pos(password.to_string()))
+        .count() as i32
 }
 
 #[cfg(test)]
@@ -144,10 +138,15 @@ mod tests {
             ("1-3 b: cdefg", false),
             ("2-9 c: ccccccccc", true),
         ];
-        for input in inputs {
-            let (policy, password) =
-                PasswordPolicy::from_line(&input.0).expect("could not parse line");
-            assert_eq!(policy.valid_contains(password), input.1)
+
+        for (line, expected) in inputs.iter() {
+            let (policy, password) = PasswordPolicy::from_line(line).expect("Failed to parse line");
+            assert_eq!(
+                policy.valid_contains(password),
+                *expected,
+                "Failed for input: {}",
+                line
+            );
         }
     }
 
@@ -158,11 +157,15 @@ mod tests {
             ("1-3 b: cdefg", false),
             ("2-9 c: ccccccccc", false),
         ];
-        for input in inputs {
-            let (policy, password) =
-                PasswordPolicy::from_line(&input.0).expect("could not parse line");
-            println!("{:?}, {}", policy, password);
-            assert_eq!(policy.valid_pos(password), input.1)
+
+        for (line, expected) in inputs.iter() {
+            let (policy, password) = PasswordPolicy::from_line(line).expect("Failed to parse line");
+            assert_eq!(
+                policy.valid_pos(password),
+                *expected,
+                "Failed for input: {}",
+                line
+            );
         }
     }
 }
