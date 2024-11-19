@@ -68,24 +68,15 @@ impl Passport {
     }
 
     fn valid_birth_year(&self) -> bool {
-        match self.birth_year {
-            Some(byr) if byr >= 1920 && byr <= 2002 => true,
-            _ => false,
-        }
+        matches!(self.birth_year, Some(byr) if (1920..=2002).contains(&byr))
     }
 
     fn valid_issue_year(&self) -> bool {
-        match self.issue_year {
-            Some(iyr) if iyr >= 2010 && iyr <= 2020 => true,
-            _ => false,
-        }
+        matches!(self.issue_year, Some(iyr) if (2010..=2020).contains(&iyr))
     }
 
     fn valid_expiration_year(&self) -> bool {
-        match self.expiration_year {
-            Some(eyr) if eyr >= 2020 && eyr <= 2030 => true,
-            _ => false,
-        }
+        matches!(self.expiration_year, Some(eyr) if (2020..=2030).contains(&eyr))
     }
 
     fn valid_height(&self) -> bool {
@@ -93,11 +84,11 @@ impl Passport {
             if hgt.ends_with("cm") {
                 hgt.trim_end_matches("cm")
                     .parse::<i32>()
-                    .map_or(false, |value| value >= 150 && value <= 193)
+                    .map_or(false, |value| (150..=193).contains(&value))
             } else if hgt.ends_with("in") {
                 hgt.trim_end_matches("in")
                     .parse::<i32>()
-                    .map_or(false, |value| value >= 59 && value <= 76)
+                    .map_or(false, |value| (59..=76).contains(&value))
             } else {
                 false
             }
@@ -108,7 +99,9 @@ impl Passport {
 
     fn valid_hair_color(&self) -> bool {
         if let Some(ref hcl) = self.hair_color {
-            hcl.starts_with('#') && hcl.len() == 7 && hcl.chars().skip(1).all(|c| c.is_digit(16))
+            hcl.starts_with('#')
+                && hcl.len() == 7
+                && hcl.chars().skip(1).all(|c| c.is_ascii_hexdigit())
         } else {
             false
         }
@@ -128,7 +121,7 @@ impl Passport {
     fn valid_pid(&self) -> bool {
         self.id
             .as_ref()
-            .map(|pid| pid.len() == 9 && pid.chars().all(|c| c.is_digit(10)))
+            .map(|pid| pid.len() == 9 && pid.chars().all(|c| c.is_ascii_digit()))
             .unwrap_or(false)
     }
 }
@@ -161,7 +154,7 @@ where
             if !current_record.is_empty() {
                 current_record.push(' ');
             }
-            current_record.push_str(&line);
+            current_record.push_str(line);
         }
     }
 
