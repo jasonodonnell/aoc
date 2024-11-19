@@ -1,7 +1,4 @@
-# Day 1
-
-
-## == Part One ==
+# --- Day 1 ---
 Find the two entries that sum to 2020 and then multiply those two numbers together.
 
 For example, suppose your expense report contained the following:
