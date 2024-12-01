@@ -23,7 +23,7 @@ fn from_lines(input: Vec<String>) -> (Vec<i64>, Vec<i64>) {
         .unzip()
 }
 
-fn part_one(a: &mut Vec<i64>, b: &mut Vec<i64>) -> i64 {
+fn part_one(a: &mut [i64], b: &mut [i64]) -> i64 {
     a.sort();
     b.sort();
 
@@ -33,7 +33,7 @@ fn part_one(a: &mut Vec<i64>, b: &mut Vec<i64>) -> i64 {
         .sum()
 }
 
-fn part_two(a: &mut Vec<i64>, b: &mut Vec<i64>) -> i64 {
+fn part_two(a: &mut [i64], b: &mut [i64]) -> i64 {
     a.sort();
     b.sort();
 
