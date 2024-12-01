@@ -74,7 +74,7 @@ distances between all of the pairs you found. In the example above, this is
 Your actual left and right lists contain many location IDs. What is the total 
 distance between your lists?
 
---- Part Two ---
+## --- Part Two ---
 
 Your analysis only confirmed what everyone feared: the two lists of location 
 IDs are indeed very different.
