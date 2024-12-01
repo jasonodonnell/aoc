@@ -54,12 +54,12 @@ mod tests {
     #[test]
     fn part_one_example() {
         let input = vec![
-            std::string::String::from("3   4"),
-            std::string::String::from("4   3"),
-            std::string::String::from("2   5"),
-            std::string::String::from("1   3"),
-            std::string::String::from("3   9"),
-            std::string::String::from("3   3"),
+            String::from("3   4"),
+            String::from("4   3"),
+            String::from("2   5"),
+            String::from("1   3"),
+            String::from("3   9"),
+            String::from("3   3"),
         ];
 
         let (mut a, mut b) = from_lines(input);
@@ -69,12 +69,12 @@ mod tests {
     #[test]
     fn part_two_example() {
         let input = vec![
-            std::string::String::from("3   4"),
-            std::string::String::from("4   3"),
-            std::string::String::from("2   5"),
-            std::string::String::from("1   3"),
-            std::string::String::from("3   9"),
-            std::string::String::from("3   3"),
+            String::from("3   4"),
+            String::from("4   3"),
+            String::from("2   5"),
+            String::from("1   3"),
+            String::from("3   9"),
+            String::from("3   3"),
         ];
         let (mut a, mut b) = from_lines(input);
         assert_eq!(part_two(&mut a, &mut b), 31)
